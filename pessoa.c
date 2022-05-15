@@ -68,10 +68,10 @@ int main(int argc, char **argv)
     int idade;
     char sexo;
 
+    putchar('\n');
+
     for (int i = 0; i < quantidade; i++)
     {
-        putchar('\n');
-
         /* ----------- SEXO ----------- */
         sexo = gerar_sexo();
 
@@ -98,6 +98,8 @@ int main(int argc, char **argv)
         printar_sexo(sexo);
         printar_cpf(cpf);
         printar_regioes_fiscais(regioesFiscais);
+
+        putchar('\n');
     }
 
     /* ----------- DESALOCAR MEMÓRIA ----------- */
