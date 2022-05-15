@@ -39,7 +39,11 @@ Compile com `make`:
 ```
 make pessoas
 ```
-ou compile manualmente com:
+ou execute em seu terminal:
 ```
 clang -Wall -Werror -o pessoa pessoa.c helpers.c
 ```
+
+## Fontes
+[Lista de sobrenomes e Fins de nomes](https://dicasdenomes.com.br/sobrenomes/sobrenomes-brasileiros-mais-populares-de-a-a-z/)<br/>
+[Lista de nomes](https://github.com/MedidaSP/nomes-brasileiros-ibge)
