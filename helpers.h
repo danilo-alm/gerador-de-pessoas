@@ -9,6 +9,9 @@
 // Bytes alocados para cada nome
 #define TAMANHONOME 25
 
+// Tamanho da maior lista possível de regiões fiscais
+#define REGIOESFISCAISTAMANHO 12
+
 // Nome de cada arquivo
 #define NOMESMASCULINOS "./recursos/nomes-masculinos.txt"
 #define NOMESFEMININOS "./recursos/nomes-femininos.txt"
@@ -23,7 +26,7 @@ typedef struct node
 node;
 
 // Retorna um CPF válido
-char *gerar_cpf();
+char *gerar_cpf(char *cpf);
 
 // Printa o CPF com pontos e hífen (xxx.xxx.xxx-xx)
 void printar_cpf(char *cpf);
@@ -31,7 +34,7 @@ void printar_cpf(char *cpf);
 /* Recebe como argumento o 9° dígito do CPF e retornaas regiões
 fiscais na qual ele foi emitido. Ex: DF, GO, MS, MT e TO será
 retornado como DFGOMSMTTO */
-char *obter_regioes_fiscais(char nonoDigito);
+char *obter_regioes_fiscais(char nonoDigito, char *buffer);
 
 // Printa as regiões fiscais separadas por vírgula
 void printar_regioes_fiscais(char *regioesFiscais);
@@ -50,7 +53,7 @@ void printar_sexo(char sexo);
 char *buscarNome(node *lista, int index);
 
 // Retorna um nome aleatório
-char *nome_aleatorio(node *nomes, int nomesQuantidade, node *sobrenomes,
+char *nome_aleatorio(char *nomeCompleto, node *nomes, int nomesQuantidade, node *sobrenomes,
 int sobrenomesQuantidade, node *finsDeNome, int finsDeNomeQuantidade);
 
 // Retorna uma idade

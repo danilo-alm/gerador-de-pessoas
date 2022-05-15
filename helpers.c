@@ -1,9 +1,7 @@
 #include "helpers.h"
 
-char *gerar_cpf()
+char *gerar_cpf(char *cpf)
 {
-    char *cpf = malloc((sizeof(char) * NUMEROSCPF) + 1);
-
     /* --------- Gerar 9 primeiros dígitos do CPF --------- */
     for (int i = 0; i < 9; i++)
     {
@@ -77,46 +75,42 @@ void printar_cpf(char *cpf)
     putchar('\n');
 }
 
-char *obter_regioes_fiscais(char nonoDigito)
+char *obter_regioes_fiscais(char nonoDigito, char *buffer)
 {
-    // Tamanho da maior lista possível de regiões
-    #define LISTATAMANHO 12
-    char *regioes = malloc(sizeof(char) * (LISTATAMANHO + 1));
-
     switch (nonoDigito)
     {
         case '1':
-            strcpy(regioes, "DFGOMSMTTO");
+            strcpy(buffer, "DFGOMSMTTO");
             break;
         case '2':
-            strcpy(regioes, "ACAMAPPARORR");
+            strcpy(buffer, "ACAMAPPARORR");
             break;
         case '3':
-            strcpy(regioes, "CEMAPI");
+            strcpy(buffer, "CEMAPI");
             break;
         case '4':
-            strcpy(regioes, "ALPBPERN");
+            strcpy(buffer, "ALPBPERN");
             break;
         case '5':
-            strcpy(regioes, "BASE");
+            strcpy(buffer, "BASE");
             break;
         case '6':
-            strcpy(regioes, "MG");
+            strcpy(buffer, "MG");
             break;
         case '7':
-            strcpy(regioes, "ESRJ");
+            strcpy(buffer, "ESRJ");
             break;
         case '8':
-            strcpy(regioes, "SP");
+            strcpy(buffer, "SP");
             break;
         case '9':
-            strcpy(regioes, "PRSC");
+            strcpy(buffer, "PRSC");
             break;
         case '0':
-            strcpy(regioes, "RS");
+            strcpy(buffer, "RS");
             break;
     }
-    return regioes;
+    return buffer;
 }
 
 void printar_regioes_fiscais(char *regioesFiscais)
@@ -162,6 +156,11 @@ node *alocar_lista(char *nomeArquivo, int *tamanhoLista)
 
         // Popular node que será adicionado à lista
         temp = malloc(sizeof(node));
+        if (temp == NULL)
+        {
+            printf("Malloc falhou\n");
+            exit(1);
+        }
         strcpy(temp -> nome, buffer);
         temp -> proximo = NULL;
 
@@ -224,26 +223,35 @@ char *buscarNome(node *lista, int index)
     return nodeAtual -> nome;
 }
 
-char *nome_aleatorio(node *nomes, int nomesQuantidade, node *sobrenomes,
+char *nome_aleatorio(char *nomeCompleto, node *nomes, int nomesQuantidade, node *sobrenomes,
 int sobrenomesQuantidade, node *finsDeNome, int finsDeNomeQuantidade)
 {
     // Obter o index de cada nome
-    int nomeIndex = rand() % (nomesQuantidade + 1);
-    int sobrenomeIndex = rand() % (sobrenomesQuantidade + 1);
-    int fimDeNomeIndex = rand() % (finsDeNomeQuantidade + 1);
+    int nomeIndex = rand() % nomesQuantidade;
+    int sobrenomeIndex = rand() % sobrenomesQuantidade;
+    int fimDeNomeIndex = rand() % finsDeNomeQuantidade;
 
     // Buscar o nome correspondente à cada index nas listas
     char *nome = buscarNome(nomes, nomeIndex);
     char *sobrenome = buscarNome(sobrenomes, sobrenomeIndex);
     char *fimDeNome = buscarNome(finsDeNome, fimDeNomeIndex);
-    size_t nomeTamanho = strlen(nome) + strlen(sobrenome) + strlen(fimDeNome) + 3;
 
     // Criar nome completo
-    char *nomeCompleto = malloc((sizeof(char) * nomeTamanho) + 1);
-    nomeCompleto[0] = '\0';
-    strcat(strcat(nomeCompleto, nome), " ");
-    strcat(strcat(nomeCompleto, sobrenome), " ");
-    strcat(nomeCompleto, fimDeNome);
+    int index = 0;
+    for (int i = 0; nome[i] != '\0'; i++)
+        nomeCompleto[index++] = nome[i];
+
+    nomeCompleto[index++] = ' ';
+
+    for (int i = 0; sobrenome[i] != '\0'; i++)
+        nomeCompleto[index++] = sobrenome[i];
+
+    nomeCompleto[index++] = ' ';
+
+    for (int i = 0; fimDeNome[i] != '\0'; i++)
+        nomeCompleto[index++] = fimDeNome[i];
+
+    nomeCompleto[index] = '\0';
 
     return nomeCompleto;
 }

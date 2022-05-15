@@ -62,10 +62,10 @@ int main(int argc, char **argv)
     int finsDeNomeQuantidade = 0;
     node *finsDeNome = alocar_lista(FINSDENOME, &finsDeNomeQuantidade);
 
-    char *regioesFiscais = NULL;
-    char *nomeCompleto = NULL;
-    char *cpf = NULL;
-    int idade = 0;
+    char regioesFiscais[REGIOESFISCAISTAMANHO + 1];
+    char nomeCompleto[(TAMANHONOME * 3) + 1];
+    char cpf[NUMEROSCPF + 1];
+    int idade;
     char sexo;
 
     for (int i = 0; i < quantidade; i++)
@@ -77,20 +77,20 @@ int main(int argc, char **argv)
 
         /* ----------- NOME ----------- */
         if (sexo == 'M')
-            nomeCompleto = nome_aleatorio(nomesMasculinos, nomesMasculinosQuantidade,
+            nome_aleatorio(nomeCompleto, nomesMasculinos, nomesMasculinosQuantidade,
             sobrenomes, sobrenomesQuantidade, finsDeNome, finsDeNomeQuantidade);
         else
-            nomeCompleto = nome_aleatorio(nomesFemininos, nomesFemininosQuantidade,
+            nome_aleatorio(nomeCompleto, nomesFemininos, nomesFemininosQuantidade,
             sobrenomes, sobrenomesQuantidade, finsDeNome, finsDeNomeQuantidade);
 
         /* ----------- IDADE ----------- */
         idade = gerar_idade();
 
         /* ----------- CPF ----------- */
-        cpf = gerar_cpf();
+        gerar_cpf(cpf);
 
         /* ----------- REGIÃO FISCAL ----------- */
-        regioesFiscais = obter_regioes_fiscais(cpf[8]);
+        obter_regioes_fiscais(cpf[8], regioesFiscais);
 
         /* ----------- PRINTAR INFORMAÇÕES ----------- */
         printf("Nome: %s\n", nomeCompleto);
@@ -98,10 +98,6 @@ int main(int argc, char **argv)
         printar_sexo(sexo);
         printar_cpf(cpf);
         printar_regioes_fiscais(regioesFiscais);
-
-        free(nomeCompleto);
-        free(cpf);
-        free(regioesFiscais);
     }
 
     /* ----------- DESALOCAR MEMÓRIA ----------- */
