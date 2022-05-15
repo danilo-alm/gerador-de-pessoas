@@ -1584,9 +1584,7 @@ Selia
 Carmosina
 Perla
 Loide
-Lindomar
 Shaiane
-Fernando
 Gercina
 Nilse
 Neida
@@ -8171,7 +8169,6 @@ Cleuzenir
 Drielli
 Giudete
 Yaeko
-Juan
 Mabili
 Docelina
 Edeilda

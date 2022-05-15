@@ -90,7 +90,7 @@ int main(int argc, char **argv)
         gerar_cpf(cpf);
 
         /* ----------- REGIÃO FISCAL ----------- */
-        obter_regioes_fiscais(cpf[8], regioesFiscais);
+        obter_regioes_fiscais(cpf, regioesFiscais);
 
         /* ----------- PRINTAR INFORMAÇÕES ----------- */
         printf("Nome: %s\n", nomeCompleto);

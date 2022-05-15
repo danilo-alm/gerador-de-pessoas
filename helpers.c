@@ -75,42 +75,43 @@ void printar_cpf(char *cpf)
     putchar('\n');
 }
 
-char *obter_regioes_fiscais(char nonoDigito, char *buffer)
+char *obter_regioes_fiscais(char *cpf, char *regioesFiscais)
 {
-    switch (nonoDigito)
+    char *nonoDigito = &cpf[8];
+    switch (*nonoDigito)
     {
         case '1':
-            strcpy(buffer, "DFGOMSMTTO");
+            strcpy(regioesFiscais, "DFGOMSMTTO");
             break;
         case '2':
-            strcpy(buffer, "ACAMAPPARORR");
+            strcpy(regioesFiscais, "ACAMAPPARORR");
             break;
         case '3':
-            strcpy(buffer, "CEMAPI");
+            strcpy(regioesFiscais, "CEMAPI");
             break;
         case '4':
-            strcpy(buffer, "ALPBPERN");
+            strcpy(regioesFiscais, "ALPBPERN");
             break;
         case '5':
-            strcpy(buffer, "BASE");
+            strcpy(regioesFiscais, "BASE");
             break;
         case '6':
-            strcpy(buffer, "MG");
+            strcpy(regioesFiscais, "MG");
             break;
         case '7':
-            strcpy(buffer, "ESRJ");
+            strcpy(regioesFiscais, "ESRJ");
             break;
         case '8':
-            strcpy(buffer, "SP");
+            strcpy(regioesFiscais, "SP");
             break;
         case '9':
-            strcpy(buffer, "PRSC");
+            strcpy(regioesFiscais, "PRSC");
             break;
         case '0':
-            strcpy(buffer, "RS");
+            strcpy(regioesFiscais, "RS");
             break;
     }
-    return buffer;
+    return regioesFiscais;
 }
 
 void printar_regioes_fiscais(char *regioesFiscais)

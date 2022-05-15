@@ -25,21 +25,20 @@ typedef struct node
 }
 node;
 
-// Retorna um CPF válido
+// Gera um CPF válido e o armazena em `cpf`
 char *gerar_cpf(char *cpf);
 
 // Printa o CPF com pontos e hífen (xxx.xxx.xxx-xx)
 void printar_cpf(char *cpf);
 
-/* Recebe como argumento o 9° dígito do CPF e retornaas regiões
-fiscais na qual ele foi emitido. Ex: DF, GO, MS, MT e TO será
-retornado como DFGOMSMTTO */
-char *obter_regioes_fiscais(char nonoDigito, char *buffer);
+/* Armazena em `regioesFiscais` uma string com as regiões
+fiscais nas quais o cpf pode ter sido emitido. */
+char *obter_regioes_fiscais(char *cpf, char *regioesFiscais);
 
 // Printa as regiões fiscais separadas por vírgula
 void printar_regioes_fiscais(char *regioesFiscais);
 
-/* Cria uma lista com cada nome em `nomeArquivo`, coloca seu
+/* Cria uma lista com cada nome em `nomeArquivo`, armazena seu
 tamanho em `tamanhoLista` e retorna o Node raiz da lista */
 node *alocar_lista(char *nomeArquivo, int *tamanhoLista);
 
@@ -52,7 +51,7 @@ void printar_sexo(char sexo);
 // Retorna o nome número `index` na lista `lista`
 char *buscarNome(node *lista, int index);
 
-// Retorna um nome aleatório
+// Gera um nome aleatório e o armazena em `nomeCompleto`
 char *nome_aleatorio(char *nomeCompleto, node *nomes, int nomesQuantidade, node *sobrenomes,
 int sobrenomesQuantidade, node *finsDeNome, int finsDeNomeQuantidade);
 
